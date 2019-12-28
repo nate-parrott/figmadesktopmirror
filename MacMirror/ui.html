@@ -1,0 +1,201 @@
+<body>
+	<div id='readyState' class='state'>
+		<div>
+			<h2>Select a frame and click 'mirror.'</h2>
+			<p>Hint: if you put 'not mirrored' within the name of a layer, it'll be hidden when mirrored.</p>
+			<div>
+				<button onClick='exportImage()'>Mirror</button>
+			</div>
+			<p>
+				<a class='smallButton' href='#' onClick='changeCode()'>Setup again</a>	
+			</p>
+		</div>
+	</div>
+	<div id='loadingState' class='state'>
+		<div>
+			<h1>⏳ Working...</h1>
+		</div>
+	</div>
+	<div id='messageState' class='state'>
+		<div>
+			<h2 id='messageLabel'>⚠️ [message]</h2>
+			<button onClick='exportImage()'>Mirror</button>	
+		</div>
+	</div>
+	<div id='getCodeState' class='state'>
+		<div>
+			<h3>Paste the code you see when you launch the Mac app.</h3>
+			<p>If you don't see the code, choose 'copy code to clipboard' from the 'Figma Mirror' menu of the Mac app.</p>
+			<form onSubmit='setCode(event)'>
+				<div>
+					<input type='text' id='code' placeholder='123e4567-e89b-12d3-a456-426655440000' />
+				</div>
+				<input type='submit' />
+			</form>
+		</div>
+	</div>
+</body>
+<style>
+	html, body {
+		background-color: #F5F5F0;
+		height: 100%;
+		margin: 0;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+		text-align: center;
+		cursor: default;
+	}
+	.state {
+		display: none;
+		height: 100%;
+		width: 100%;
+		flex-direction: row;
+		padding: 1em;
+		box-sizing: border-box;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+	}
+	p {
+		line-height: 1.2;
+		color: rgba(0,0,0,0.5);
+	}
+	input[type=submit], button {
+		border: none;
+		font-family: inherit; /* 1 */
+		font-size: 125%; /* 1 */
+		line-height: 1.15; /* 1 */
+		margin: 10px;
+		padding: 0.5em 1em;
+		background-color: #252626;
+		font-weight: bold;;
+		color: #F5F5F0;
+		border-radius: 7px;
+		outline: none;
+	}
+	button:hover {
+		opacity: 0.7;
+	}
+	button:active {
+		opacity: 0.4;
+	}
+	#code {
+		width: 80%;
+		padding: 0.5em;
+		text-align: center;
+	}
+	a:link {
+		color: #252626;
+	}
+	.smallButton {
+		font-size: small;
+		opacity: 0.5;
+	}
+</style>
+<script>
+
+const base64abc = (() => {
+	let abc = [],
+		A = "A".charCodeAt(0),
+		a = "a".charCodeAt(0),
+		n = "0".charCodeAt(0);
+	for (let i = 0; i < 26; ++i) {
+		abc.push(String.fromCharCode(A + i));
+	}
+	for (let i = 0; i < 26; ++i) {
+		abc.push(String.fromCharCode(a + i));
+	}
+	for (let i = 0; i < 10; ++i) {
+		abc.push(String.fromCharCode(n + i));
+	}
+	abc.push("+");
+	abc.push("/");
+	return abc;
+})();
+
+function bytesToBase64(bytes) {
+	let result = '', i, l = bytes.length;
+	for (i = 2; i < l; i += 3) {
+		result += base64abc[bytes[i - 2] >> 2];
+		result += base64abc[((bytes[i - 2] & 0x03) << 4) | (bytes[i - 1] >> 4)];
+		result += base64abc[((bytes[i - 1] & 0x0F) << 2) | (bytes[i] >> 6)];
+		result += base64abc[bytes[i] & 0x3F];
+	}
+	if (i === l + 1) { // 1 octet missing
+		result += base64abc[bytes[i - 2] >> 2];
+		result += base64abc[(bytes[i - 2] & 0x03) << 4];
+		result += "==";
+	}
+	if (i === l) { // 2 octets missing
+		result += base64abc[bytes[i - 2] >> 2];
+		result += base64abc[((bytes[i - 2] & 0x03) << 4) | (bytes[i - 1] >> 4)];
+		result += base64abc[(bytes[i - 1] & 0x0F) << 2];
+		result += "=";
+	}
+	return result;
+}
+
+let SYNC_CODE = '';
+
+function showState(name) {
+	const stateViews = document.querySelectorAll('.state');
+	for (var i=0; i<stateViews.length; i++) {
+		stateViews[i].style.display = 'none';
+	}
+	document.getElementById(name).style.display = 'flex';
+}
+
+function changeCode() {
+	showState('getCodeState');
+}
+
+function setCode(e) {
+	e.preventDefault();
+	const code = document.getElementById('code').value;
+	if (code.length > 0) {
+		SYNC_CODE = code;
+		window.parent.postMessage({pluginMessage: {type: 'persistCode', code: SYNC_CODE}}, '*');
+		showState('readyState');
+	}
+	return false;
+}
+
+function exportImage() {
+	showState('loadingState');
+	window.parent.postMessage({pluginMessage: {type: 'exportImage'}}, '*')
+}
+
+function main() {
+	exportImage();
+}
+
+main();
+
+window.onmessage = async (event) => {
+	const type = event.data.pluginMessage.type;
+	if (type === 'exportImage') {
+		SYNC_CODE = event.data.pluginMessage.code;
+		if (SYNC_CODE.length === '') {
+			showState('getCodeState');
+			return;
+		}
+		showState('loadingState');
+		var request = new XMLHttpRequest()
+		var key = SYNC_CODE;
+		request.open('PUT', 'https://figmadesktopmirror.firebaseio.com/preview/' + key + '.json')
+		request.responseType = 'text'
+		console.log('code:', SYNC_CODE);
+		request.onload = () => {
+			// window.parent.postMessage({pluginMessage: request.response}, '*')
+			showState('readyState');
+		};
+		// request.send(event.data.pluginMessage.data);
+		// const decoded = (new TextDecoder('utf8')).decode(event.data.pluginMessage.data);
+		// console.log(decoded);
+		const base64 = bytesToBase64(event.data.pluginMessage.data);
+		request.send(JSON.stringify({image: base64}));
+	} else if (type === 'message') {
+		document.getElementById('messageLabel').innerText = event.data.pluginMessage.text;
+		showState('messageState');
+	}
+}
+</script>

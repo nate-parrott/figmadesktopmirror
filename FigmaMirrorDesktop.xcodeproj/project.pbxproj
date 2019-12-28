@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,16 +11,26 @@
 		35C1ABE82394CB6E00FCCCC4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1ABE72394CB6E00FCCCC4 /* ViewController.swift */; };
 		35C1ABEA2394CB7400FCCCC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35C1ABE92394CB7400FCCCC4 /* Assets.xcassets */; };
 		35C1ABED2394CB7400FCCCC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35C1ABEB2394CB7400FCCCC4 /* Main.storyboard */; };
+		35C1ABF92394E62200FCCCC4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 35C1ABF82394E62200FCCCC4 /* GoogleService-Info.plist */; };
+		35C1ABFB2394E65500FCCCC4 /* PreviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1ABFA2394E65500FCCCC4 /* PreviewManager.swift */; };
+		35C1ABFD2394F5CB00FCCCC4 /* PreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35C1ABFC2394F5CB00FCCCC4 /* PreviewWindowController.swift */; };
+		ECC842C3FFA35039F2131610 /* Pods_FigmaMirrorDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391AB6499410C64A169EAB08 /* Pods_FigmaMirrorDesktop.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		35C1ABE22394CB6E00FCCCC4 /* FigmaMirrorDesktop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FigmaMirrorDesktop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		35C1ABE22394CB6E00FCCCC4 /* Figma Mirror.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Figma Mirror.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35C1ABE52394CB6E00FCCCC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		35C1ABE72394CB6E00FCCCC4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		35C1ABE92394CB7400FCCCC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35C1ABEC2394CB7400FCCCC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35C1ABEE2394CB7400FCCCC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35C1ABEF2394CB7400FCCCC4 /* FigmaMirrorDesktop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FigmaMirrorDesktop.entitlements; sourceTree = "<group>"; };
+		35C1ABF82394E62200FCCCC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		35C1ABFA2394E65500FCCCC4 /* PreviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewManager.swift; sourceTree = "<group>"; };
+		35C1ABFC2394F5CB00FCCCC4 /* PreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWindowController.swift; sourceTree = "<group>"; };
+		391AB6499410C64A169EAB08 /* Pods_FigmaMirrorDesktop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FigmaMirrorDesktop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5CE505BD1EF7BD9FBF6E37EB /* Pods-FigmaMirrorDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaMirrorDesktop.release.xcconfig"; path = "Target Support Files/Pods-FigmaMirrorDesktop/Pods-FigmaMirrorDesktop.release.xcconfig"; sourceTree = "<group>"; };
+		93B9F3253679421B0B0D4E91 /* Pods-FigmaMirrorDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FigmaMirrorDesktop.debug.xcconfig"; path = "Target Support Files/Pods-FigmaMirrorDesktop/Pods-FigmaMirrorDesktop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC842C3FFA35039F2131610 /* Pods_FigmaMirrorDesktop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,13 +50,15 @@
 			children = (
 				35C1ABE42394CB6E00FCCCC4 /* FigmaMirrorDesktop */,
 				35C1ABE32394CB6E00FCCCC4 /* Products */,
+				8B8F9146EE9FEBD0CAF0DE73 /* Pods */,
+				5FBCFB648F6874D3011535D5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		35C1ABE32394CB6E00FCCCC4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				35C1ABE22394CB6E00FCCCC4 /* FigmaMirrorDesktop.app */,
+				35C1ABE22394CB6E00FCCCC4 /* Figma Mirror.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -55,12 +68,32 @@
 			children = (
 				35C1ABE52394CB6E00FCCCC4 /* AppDelegate.swift */,
 				35C1ABE72394CB6E00FCCCC4 /* ViewController.swift */,
+				35C1ABFA2394E65500FCCCC4 /* PreviewManager.swift */,
+				35C1ABFC2394F5CB00FCCCC4 /* PreviewWindowController.swift */,
+				35C1ABF82394E62200FCCCC4 /* GoogleService-Info.plist */,
 				35C1ABE92394CB7400FCCCC4 /* Assets.xcassets */,
 				35C1ABEB2394CB7400FCCCC4 /* Main.storyboard */,
 				35C1ABEE2394CB7400FCCCC4 /* Info.plist */,
 				35C1ABEF2394CB7400FCCCC4 /* FigmaMirrorDesktop.entitlements */,
 			);
 			path = FigmaMirrorDesktop;
+			sourceTree = "<group>";
+		};
+		5FBCFB648F6874D3011535D5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				391AB6499410C64A169EAB08 /* Pods_FigmaMirrorDesktop.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8B8F9146EE9FEBD0CAF0DE73 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				93B9F3253679421B0B0D4E91 /* Pods-FigmaMirrorDesktop.debug.xcconfig */,
+				5CE505BD1EF7BD9FBF6E37EB /* Pods-FigmaMirrorDesktop.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -70,17 +103,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35C1ABF22394CB7400FCCCC4 /* Build configuration list for PBXNativeTarget "FigmaMirrorDesktop" */;
 			buildPhases = (
+				681A5C20A55455F597A806D7 /* [CP] Check Pods Manifest.lock */,
 				35C1ABDE2394CB6E00FCCCC4 /* Sources */,
 				35C1ABDF2394CB6E00FCCCC4 /* Frameworks */,
 				35C1ABE02394CB6E00FCCCC4 /* Resources */,
+				9A5D0503C14A097E7D79BCB3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FigmaMirrorDesktop;
+			packageProductDependencies = (
+			);
 			productName = FigmaMirrorDesktop;
-			productReference = 35C1ABE22394CB6E00FCCCC4 /* FigmaMirrorDesktop.app */;
+			productReference = 35C1ABE22394CB6E00FCCCC4 /* Figma Mirror.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -107,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 35C1ABD92394CB6E00FCCCC4;
+			packageReferences = (
+				35C1ABF52394CCF800FCCCC4 /* XCRemoteSwiftPackageReference "swifter" */,
+			);
 			productRefGroup = 35C1ABE32394CB6E00FCCCC4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -121,12 +161,55 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35C1ABF92394E62200FCCCC4 /* GoogleService-Info.plist in Resources */,
 				35C1ABEA2394CB7400FCCCC4 /* Assets.xcassets in Resources */,
 				35C1ABED2394CB7400FCCCC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		681A5C20A55455F597A806D7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FigmaMirrorDesktop-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A5D0503C14A097E7D79BCB3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FigmaMirrorDesktop/Pods-FigmaMirrorDesktop-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FigmaMirrorDesktop/Pods-FigmaMirrorDesktop-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FigmaMirrorDesktop/Pods-FigmaMirrorDesktop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		35C1ABDE2394CB6E00FCCCC4 /* Sources */ = {
@@ -135,6 +218,8 @@
 			files = (
 				35C1ABE82394CB6E00FCCCC4 /* ViewController.swift in Sources */,
 				35C1ABE62394CB6E00FCCCC4 /* AppDelegate.swift in Sources */,
+				35C1ABFD2394F5CB00FCCCC4 /* PreviewWindowController.swift in Sources */,
+				35C1ABFB2394E65500FCCCC4 /* PreviewManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +352,7 @@
 		};
 		35C1ABF32394CB7400FCCCC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93B9F3253679421B0B0D4E91 /* Pods-FigmaMirrorDesktop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FigmaMirrorDesktop/FigmaMirrorDesktop.entitlements;
@@ -280,13 +366,14 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nateparrott.FigmaMirrorDesktop;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Figma Mirror";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		35C1ABF42394CB7400FCCCC4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5CE505BD1EF7BD9FBF6E37EB /* Pods-FigmaMirrorDesktop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FigmaMirrorDesktop/FigmaMirrorDesktop.entitlements;
@@ -300,7 +387,7 @@
 					"@executable_path/../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nateparrott.FigmaMirrorDesktop;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Figma Mirror";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -327,6 +414,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		35C1ABF52394CCF800FCCCC4 /* XCRemoteSwiftPackageReference "swifter" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/httpswift/swifter.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = 35C1ABDA2394CB6E00FCCCC4 /* Project object */;
 }

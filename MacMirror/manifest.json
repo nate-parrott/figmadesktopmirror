@@ -1,0 +1,7 @@
+{
+  "name": "MacMirror",
+  "id": "783196588973851483",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html"
+}

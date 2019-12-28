@@ -21,6 +21,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-
+    @IBAction func copyCode(sender: Any) {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(PreviewManager.shared.key, forType: .string)
+    }
 }
 
