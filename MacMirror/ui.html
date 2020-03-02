@@ -174,7 +174,7 @@ window.onmessage = async (event) => {
 	const type = event.data.pluginMessage.type;
 	if (type === 'exportImage') {
 		SYNC_CODE = event.data.pluginMessage.code;
-		if (SYNC_CODE.length === '') {
+		if (!SYNC_CODE || SYNC_CODE.length === '') {
 			showState('getCodeState');
 			return;
 		}
