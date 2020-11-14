@@ -7,12 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+const CODE_KEY = "code2";
 function getCurrentFrame() {
     if (figma.currentPage.selection.length === 0) {
         return undefined;
     }
     function _getCurrentFrame(node) {
-        if (node.type === 'FRAME') {
+        if (node.type === "FRAME") {
             return node;
         }
         if (node.parent) {
@@ -49,45 +50,45 @@ function hideNodesWithSubstringInName(substring, root) {
 }
 function exportImage() {
     const curFrame = getCurrentFrame();
-    if (curFrame) {
-        const settings = {
-            format: 'PNG',
-            constraint: {
-                type: 'SCALE',
-                value: 2
-            }
-        };
-        const unhide = hideNodesWithSubstringInName('not mirrored', curFrame);
-        curFrame.exportAsync(settings).then(data => {
-            unhide();
-            // const b64 = bytesToBase64(data);
-            // figma.showUI(__html__);
-            // figma.ui.postMessage({ type: 'networkRequest', key: 'd88efbab35914a93b665de9ad299a8ea', imageBase64: b64 })
-            figma.clientStorage.getAsync('code').then((code) => {
-                figma.ui.postMessage({ type: 'exportImage', data: data, code });
-            });
-            // figma.ui.onmessage = async (msg) => {
-            //   figma.closePlugin()
-            // }
+    if (!curFrame) {
+        figma.ui.postMessage({
+            type: "message",
+            text: "Select a frame and then press 'mirror'.",
         });
+        return;
     }
-    else {
-        figma.ui.postMessage({ type: 'message', text: "Select a frame and then press 'mirror'." });
-        // figma.closePlugin()
-    }
-}
-function main() {
-    figma.showUI(__html__, {
-        width: 400,
-        height: 300
+    const settings = {
+        format: "PNG",
+        constraint: {
+            type: "SCALE",
+            value: 2,
+        },
+    };
+    const unhide = hideNodesWithSubstringInName("not mirrored", curFrame);
+    curFrame.exportAsync(settings).then((data) => {
+        unhide();
+        figma.clientStorage.getAsync(CODE_KEY).then((code) => {
+            console.log("Data length: ", data.length);
+            figma.ui.postMessage({ type: "uploadImage", data: data, code });
+        });
     });
+}
+const SIZES = {
+    small: { width: 100, height: 100 },
+    large: { width: 400, height: 300 },
+};
+function main() {
+    figma.showUI(__html__, SIZES.small);
     figma.ui.onmessage = (msg) => __awaiter(this, void 0, void 0, function* () {
-        if (msg.type === 'exportImage') {
+        if (msg.type === "exportImage") {
             exportImage();
         }
-        else if (msg.type === 'persistCode') {
-            figma.clientStorage.setAsync('code', msg.code);
-            console.log('persisted code!');
+        else if (msg.type === "persistCode") {
+            figma.clientStorage.setAsync(CODE_KEY, msg.code);
+        }
+        else if (msg.type === "resize") {
+            const { width, height } = SIZES[msg.size];
+            figma.ui.resize(width, height);
         }
     });
 }

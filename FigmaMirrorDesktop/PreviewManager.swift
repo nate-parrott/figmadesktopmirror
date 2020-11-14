@@ -23,7 +23,6 @@ class PreviewManager {
             key = UUID().uuidString.lowercased().components(separatedBy: "-").joined()
             UserDefaults.standard.set(key, forKey: defaultsKey)
         }
-        print("KEY: \(key)")
         
         Database.database().reference(withPath: "/preview").child(key).child("image").observe(.value) { (snapshot) in
             if let b64String = snapshot.value as? String, let data = Data(base64Encoded: b64String), let image = NSImage(data: data) {

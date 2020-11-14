@@ -58,9 +58,12 @@ class ViewController: NSViewController {
     func updateWindow() {
         let hasImage = (image != nil)
         if let window = view.window {
-            window.isOpaque = !hasImage
-            window.backgroundColor = hasImage ? NSColor.clear : NSColor.windowBackgroundColor
-            window.hasShadow = !hasImage
+            window.standardWindowButton(.closeButton)?.isHidden = hasImage
+            window.standardWindowButton(.zoomButton)?.isHidden = hasImage
+            window.standardWindowButton(.miniaturizeButton)?.isHidden = hasImage
+//            window.isOpaque = !hasImage
+//            window.backgroundColor = hasImage ? NSColor.clear : NSColor.windowBackgroundColor
+//            window.hasShadow = !hasImage
 //            var style = window.styleMask
 //            if hasImage {
 //                style.remove(.)
