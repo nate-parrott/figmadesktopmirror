@@ -23,6 +23,27 @@ function getCurrentFrame() {
     }
     return _getCurrentFrame(figma.currentPage.selection[0]);
 }
+// root frame
+function getArtboard(startingNode) {
+    function getNodeAncestors(base) {
+        const parents = base.parent ? getNodeAncestors(base.parent) : [];
+        if (base.type === "FRAME") {
+            return [...parents, base];
+        }
+        return parents;
+    }
+    const a = getNodeAncestors(startingNode);
+    return a.length ? a[0] : undefined;
+}
+function findNodeContainingString(root, str) {
+    const matches = [];
+    traverseSceneNodes(root, (node) => {
+        if (node.name.toLowerCase().indexOf(str) > -1) {
+            matches.push(node);
+        }
+    });
+    return matches.length ? matches[0] : undefined;
+}
 function traverseSceneNodes(root, callback) {
     callback(root);
     if (root.children) {
@@ -34,7 +55,7 @@ function traverseSceneNodes(root, callback) {
 function hideNodesWithSubstringInName(substring, root) {
     var idsToShow = {};
     traverseSceneNodes(root, (node) => {
-        if (node.name.toLocaleLowerCase().search(substring) > -1 && node.visible) {
+        if (node.name.toLocaleLowerCase().indexOf(substring) > -1 && node.visible) {
             node.visible = false;
             idsToShow[node.id] = 1;
         }
@@ -48,8 +69,22 @@ function hideNodesWithSubstringInName(substring, root) {
     };
     return unhideFunction;
 }
+function findStartingNode() {
+    const cur = getCurrentFrame();
+    if (!cur)
+        return undefined;
+    const ab = getArtboard(cur);
+    if (ab) {
+        const mirror = findNodeContainingString(ab, "[mirror]");
+        if (mirror) {
+            return mirror;
+        }
+    }
+    return cur;
+}
 function exportImage() {
-    const curFrame = getCurrentFrame();
+    const curFrame = findStartingNode();
+    console.log("NODE: ", curFrame.name);
     if (!curFrame) {
         figma.ui.postMessage({
             type: "message",
@@ -64,7 +99,7 @@ function exportImage() {
             value: 2,
         },
     };
-    const unhide = hideNodesWithSubstringInName("not mirrored", curFrame);
+    const unhide = hideNodesWithSubstringInName("[not mirrored]", curFrame);
     curFrame.exportAsync(settings).then((data) => {
         unhide();
         figma.clientStorage.getAsync(CODE_KEY).then((code) => {

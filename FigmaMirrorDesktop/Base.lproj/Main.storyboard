@@ -718,7 +718,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="dcn-RA-L08">
-                                <rect key="frame" x="0.0" y="0.0" width="451" height="302"/>
+                                <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                             </visualEffectView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JQa-wS-1gr" customClass="DraggableImageView" customModule="Figma_Mirror" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
@@ -760,13 +760,13 @@
                         <constraints>
                             <constraint firstItem="JQa-wS-1gr" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="9bc-w2-NVc"/>
                             <constraint firstItem="JQa-wS-1gr" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="D6D-2o-M3y"/>
-                            <constraint firstItem="dcn-RA-L08" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="-32" id="EFz-vI-aFA"/>
+                            <constraint firstItem="dcn-RA-L08" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="EFz-vI-aFA"/>
                             <constraint firstItem="D8T-VX-JfW" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="LUI-Bp-nz7"/>
                             <constraint firstAttribute="bottom" secondItem="dcn-RA-L08" secondAttribute="bottom" id="STU-53-tYC"/>
                             <constraint firstItem="D8T-VX-JfW" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="Ubs-cb-CKs"/>
                             <constraint firstAttribute="trailing" secondItem="JQa-wS-1gr" secondAttribute="trailing" id="VYl-hx-G4n"/>
                             <constraint firstItem="dcn-RA-L08" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="efO-EJ-Uqe"/>
-                            <constraint firstAttribute="trailing" secondItem="dcn-RA-L08" secondAttribute="trailing" constant="29" id="hGE-Sp-HBe"/>
+                            <constraint firstAttribute="trailing" secondItem="dcn-RA-L08" secondAttribute="trailing" id="hGE-Sp-HBe"/>
                             <constraint firstAttribute="bottom" secondItem="JQa-wS-1gr" secondAttribute="bottom" id="mdL-wb-8Kj"/>
                         </constraints>
                     </view>
